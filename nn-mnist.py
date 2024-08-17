@@ -220,7 +220,7 @@ def convert_one_hot_to_class(Y_one_hot):
     return np.argmax(Y_one_hot, axis=1)
 def get_cost_function(Y_hat,Y):
     m=Y.shape[0]
-    cost=-(1/m)*(np.dot(Y,np.log(Y_hat))+np.dot(1-Y,np.log(1-Y_hat)))
+    cost = -np.mean(np.sum(Y * np.log(Y_hat + 1e-8), axis=1))
     return np.squeeze(cost) 
 def get_accuracy_value(Y_hat, Y):
     Y_hat = convert_prob_into_class(Y_hat)
